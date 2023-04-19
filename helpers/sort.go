@@ -33,6 +33,26 @@ func TestArraysInt() [][]int {
 	}
 }
 
+func TestArraysIntNonNegative() [][]int {
+	return [][]int{
+		{},
+		{1},
+		{2, 1},
+		{3, 1, 2},
+		{4, 3, 2, 1},
+		{5, 1, 3, 4, 2},
+		{0, 1, 0, 1, 0},
+		{0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 1},
+		{1, 0, 0, 0},
+		{0, 0, 0, 1},
+		{0, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0},
+		{42, 0, 1, 0},
+		{42, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+	}
+}
+
 func TestSort(t *testing.T, xs []int, sort func([]int) []int) {
 	want := SortInts(xs)
 	got := sort(xs)
