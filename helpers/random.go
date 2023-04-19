@@ -1,12 +1,8 @@
 package helpers
 
-import (
-	"math/rand"
-	"time"
-)
+import "math/rand"
 
 func RandomInts(maxSize int, maxValue int) []int {
-	rand.Seed(time.Now().UnixNano())
 	size := rand.Intn(maxSize)
 	xs := make([]int, 0, size)
 	for i := 0; i < size; i++ {
