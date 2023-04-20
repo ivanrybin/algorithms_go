@@ -1,6 +1,6 @@
 package sorts
 
-import "ivanrybin/algorithms_go/helpers"
+import hs "ivanrybin/algorithms_go/helpers"
 
 // MergeSort O(n * log n) / O(n) (mem / time)
 func MergeSort(xs []int) []int {
@@ -18,7 +18,7 @@ func MergeSortNonRecursive(xs []int) []int {
 	n := len(xs)
 	for size := 1; size < n; size *= 2 {
 		for l := 0; l < n; l += 2 * size {
-			m, r := helpers.MinInt(l+size, n), helpers.MinInt(l+2*size, n)
+			m, r := hs.MinInt(l+size, n), hs.MinInt(l+2*size, n)
 			if m < r {
 				copy(xs[l:r], merge(xs[l:m], xs[m:r]))
 			}

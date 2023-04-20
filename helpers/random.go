@@ -10,3 +10,15 @@ func RandomInts(maxSize int, maxValue int) []int {
 	}
 	return xs
 }
+
+func RandomPairsIntInt(maxSize int, maxValue int) []Pair[int, int] {
+	size := rand.Intn(maxSize)
+	xs := make([]Pair[int, int], 0, size)
+	for i := 0; i < size; i++ {
+		xs = append(xs, Pair[int, int]{
+			L: rand.Intn(maxValue),
+			R: rand.Intn(maxValue),
+		})
+	}
+	return xs
+}

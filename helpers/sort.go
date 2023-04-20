@@ -13,6 +13,15 @@ func SortInts(xs []int) []int {
 	return cp
 }
 
+func SortPairsStable[T any](xs []Pair[int, T]) []Pair[int, T] {
+	cp := make([]Pair[int, T], len(xs))
+	copy(cp, xs)
+	sort.SliceStable(cp, func(i, j int) bool {
+		return cp[i].L < cp[j].L
+	})
+	return cp
+}
+
 func TestArraysInt() [][]int {
 	return [][]int{
 		{},
@@ -53,8 +62,16 @@ func TestArraysIntNonNegative() [][]int {
 	}
 }
 
-func TestSort(t *testing.T, xs []int, sort func([]int) []int) {
+func TestIntSort(t *testing.T, xs []int, sort func([]int) []int) {
 	want := SortInts(xs)
+	got := sort(xs)
+	if !reflect.DeepEqual(want, got) {
+		t.Errorf("size=%v want=%v != got=%v", len(xs), want, got)
+	}
+}
+
+func TestPairSortStable[T any](t *testing.T, xs []Pair[int, T], sort func([]Pair[int, T]) []Pair[int, T]) {
+	want := SortPairsStable(xs)
 	got := sort(xs)
 	if !reflect.DeepEqual(want, got) {
 		t.Errorf("size=%v want=%v != got=%v", len(xs), want, got)

@@ -7,21 +7,21 @@ import (
 	hs "ivanrybin/algorithms_go/helpers"
 )
 
-func TestHeapSort(t *testing.T) {
+func TestBubbleSort(t *testing.T) {
 	for _, tt := range hs.TestArraysInt() {
 		tt := tt
 		t.Run(fmt.Sprintf("%v", tt), func(t *testing.T) {
-			hs.TestIntSort(t, tt, HeapSort)
+			hs.TestIntSort(t, tt, BubbleSort)
 		})
 	}
 }
 
-func TestHeapSort_Random(t *testing.T) {
+func TestBubbleSort_Random(t *testing.T) {
 	maxSize, maxValue := 100, 10
 	for i := 0; i < 1000; i++ {
 		xs := hs.RandomInts(maxSize, maxValue)
 		t.Run(fmt.Sprintf("%v", xs), func(t *testing.T) {
-			hs.TestIntSort(t, xs, HeapSort)
+			hs.TestIntSort(t, xs, BubbleSort)
 		})
 	}
 }

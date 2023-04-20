@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"testing"
 
-	"ivanrybin/algorithms_go/helpers"
+	hs "ivanrybin/algorithms_go/helpers"
 )
 
 func TestQuickSort(t *testing.T) {
-	for _, tt := range helpers.TestArraysInt() {
+	for _, tt := range hs.TestArraysInt() {
 		tt := tt
 		t.Run(fmt.Sprintf("%v", tt), func(t *testing.T) {
-			helpers.TestSort(t, tt, QuickSort)
+			hs.TestIntSort(t, tt, QuickSort)
 		})
 	}
 }
@@ -19,9 +19,9 @@ func TestQuickSort(t *testing.T) {
 func TestQuickSort_Random(t *testing.T) {
 	maxSize, maxValue := 100, 10
 	for i := 0; i < 1000; i++ {
-		xs := helpers.RandomInts(maxSize, maxValue)
+		xs := hs.RandomInts(maxSize, maxValue)
 		t.Run(fmt.Sprintf("%v", xs), func(t *testing.T) {
-			helpers.TestSort(t, xs, QuickSort)
+			hs.TestIntSort(t, xs, QuickSort)
 		})
 	}
 }
