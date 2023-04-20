@@ -1,15 +1,13 @@
 package sorts
 
-// InsertionSort O(n) / O(n^2) (mem / time)
+// InsertionSort O(n) / O(n^2) (mem / time) - big amount of elements copying.
 func InsertionSort(xs []int) []int {
 	for i := 0; i < len(xs); i++ {
-		pos := i
-		for j := i + 1; j < len(xs); j++ {
-			if xs[j] < xs[pos] {
-				pos = j
+		for j := i; j > 0; j-- {
+			if xs[j-1] > xs[j] {
+				xs[j-1], xs[j] = xs[j], xs[j-1]
 			}
 		}
-		xs[i], xs[pos] = xs[pos], xs[i]
 	}
 	return xs
 }
