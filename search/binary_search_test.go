@@ -9,7 +9,7 @@ import (
 
 func TestBinarySearch_First_Uniq(t *testing.T) {
 	for size := 0; size < 100; size++ {
-		xs := hs.SortedUniqSequentialInts(uint(size))
+		xs := hs.UniqSequentialInts(uint(size))
 		for want, x := range xs {
 			got := BinarySearch(x, xs, BinarySearchFirst)
 			if got != want {
@@ -21,7 +21,7 @@ func TestBinarySearch_First_Uniq(t *testing.T) {
 
 func TestBinarySearchLeftMost_Uniq(t *testing.T) {
 	for size := 0; size < 100; size++ {
-		xs := hs.SortedUniqSequentialInts(uint(size))
+		xs := hs.UniqSequentialInts(uint(size))
 		for want, x := range xs {
 			got := BinarySearch(x, xs, BinarySearchLeftMost)
 			if got != want {
@@ -33,7 +33,7 @@ func TestBinarySearchLeftMost_Uniq(t *testing.T) {
 
 func TestBinarySearchRightMost_Uniq(t *testing.T) {
 	for size := 0; size < 100; size++ {
-		xs := hs.SortedUniqSequentialInts(uint(size))
+		xs := hs.UniqSequentialInts(uint(size))
 		for want, x := range xs {
 			got := BinarySearch(x, xs, BinarySearchRightMost)
 			if got != want {
