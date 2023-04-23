@@ -1,8 +1,11 @@
-package search
+package dynamic
 
 // https://cp-algorithms.com/sequences/longest_increasing_subsequence.html
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 // LongestIncreasingSubsequence O(n) / O(n^2) (mem / time).
 func LongestIncreasingSubsequence(xs []int) []int {
@@ -56,6 +59,32 @@ func LongestIncreasingSubsequenceModified(xs []int) []int {
 				d[l] = xs[i]
 				prev[l] = i
 			}
+		}
+	}
+	// indices restoring
+	lis := make([]int, 0, len(xs))
+	for _, p := range prev {
+		if p != -1 {
+			lis = append(lis, p)
+		}
+	}
+	return lis
+}
+
+// LongestIncreasingSubsequenceModifiedFast O(n) / O(n * log n) (mem / time).
+func LongestIncreasingSubsequenceModifiedFast(xs []int) []int {
+	// d[l] - the smallest element at which an increasing subsequence of length l ends
+	prev, d := make([]int, len(xs)+1), make([]int, len(xs)+1)
+	prev[0], d[0] = -1, math.MinInt
+	for i := 1; i < len(d); i++ {
+		d[i] = math.MaxInt
+		prev[i] = -1
+	}
+	// subsequence calculation
+	for i := 0; i < len(xs); i++ {
+		if l := sort.SearchInts(d, xs[i]); d[l-1] < xs[i] && xs[i] < d[l] {
+			d[l] = xs[i]
+			prev[l] = i
 		}
 	}
 	// indices restoring
