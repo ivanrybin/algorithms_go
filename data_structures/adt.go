@@ -23,3 +23,11 @@ type List[T any] interface {
 	Size() int
 	IsEmpty() bool
 }
+
+type DisjointSet[T any] interface {
+	MakeSet(x T)
+	Find(x T) T
+	Union(x, y T)
+}
+
+type DisjointSetInt = DisjointSet[int]
