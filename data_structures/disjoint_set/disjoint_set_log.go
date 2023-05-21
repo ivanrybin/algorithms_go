@@ -10,13 +10,13 @@ type DisjointSetLog struct {
 }
 
 func NewDisjointSetLog(n int) *DisjointSetLog {
-	parent := make([]int, 0, n)
+	parent := make([]int, n)
 	for i := 0; i < n; i++ {
 		parent[i] = -1
 	}
 	return &DisjointSetLog{
 		parent: parent,
-		rank:   make([]int, 0, n),
+		rank:   make([]int, n),
 	}
 }
 
