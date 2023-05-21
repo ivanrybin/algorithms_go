@@ -51,7 +51,7 @@ func (d *DisjointSetLogStar) Union(x, y int) {
 
 // Find amortized O(α(n)) because of path compression in Find and rank heuristic in Union.
 func (d *DisjointSetLogStar) Find(x int) int {
-	for d.parent[x] != x && d.parent[x] != -1 {
+	for ; d.parent[x] != x && d.parent[x] != -1; x = d.parent[x] {
 		d.parent[x] = d.parent[d.parent[x]]
 	}
 	return d.parent[x]
