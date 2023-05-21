@@ -7,11 +7,14 @@ func MinInt(a, b int) int {
 	return b
 }
 
-func MaxInt(a, b int) int {
-	if a > b {
-		return a
+func MinInts(x int, xs ...int) int {
+	min := x
+	for _, n := range xs {
+		if n < min {
+			min = n
+		}
 	}
-	return b
+	return min
 }
 
 func MinInArray(xs []int) int {
