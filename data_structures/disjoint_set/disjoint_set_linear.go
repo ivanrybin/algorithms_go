@@ -9,7 +9,7 @@ type DisjointSetLinear struct {
 }
 
 func NewDisjointSetLinear(n int) *DisjointSetLinear {
-	parent := make([]int, 0, n)
+	parent := make([]int, n)
 	for i := 0; i < n; i++ {
 		parent[i] = -1
 	}
