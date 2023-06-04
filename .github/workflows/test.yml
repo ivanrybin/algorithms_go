@@ -10,13 +10,25 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    env:
+      GOPATH: ${{ github.workspace }}/go
+    defaults:
+      run:
+        working-directory: ${{ env.GOPATH }}/src/github.com/ivanrybin/algorithms_go
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          path: ${{ env.GOPATH }}/src/github.com/ivanrybin/algorithms_go
 
-      - name: Set up Go
+      - name: Set up Go 1.20
         uses: actions/setup-go@v3
         with:
-          go-version: 1.20
+          go-version: '1.20'
+
+      - run: go version
+
+      - run: go env
 
       - name: Test
-        run: go test -cover -v ./...
+        run: make test
