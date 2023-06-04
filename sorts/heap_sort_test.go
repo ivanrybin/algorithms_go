@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	hs "ivanrybin/algorithms_go/helpers"
+	hs "github.com/ivanrybin/algorithms_go/helpers"
 )
 
 func TestHeapSort(t *testing.T) {

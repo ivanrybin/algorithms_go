@@ -1,6 +1,6 @@
 package dynamic
 
-import hs "ivanrybin/algorithms_go/helpers"
+import hs "github.com/ivanrybin/algorithms_go/helpers"
 
 // EditDistance O(|s1| * |s2|) / O(|s1| * |s2|) (mem / time).
 // !!! could be improved in memory to O(|s2|).

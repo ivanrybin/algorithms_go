@@ -1,6 +1,6 @@
 package sorts
 
-import hs "ivanrybin/algorithms_go/helpers"
+import hs "github.com/ivanrybin/algorithms_go/helpers"
 
 // MergeSort O(n * log n) / O(n) (mem / time)
 func MergeSort(xs []int) []int {

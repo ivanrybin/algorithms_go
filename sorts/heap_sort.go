@@ -1,6 +1,6 @@
 package sorts
 
-import "ivanrybin/algorithms_go/data_structures/heap"
+import "github.com/ivanrybin/algorithms_go/data_structures/heap"
 
 // HeapSort O(n) / O(n * log n) (mem / time).
 func HeapSort(xs []int) []int {

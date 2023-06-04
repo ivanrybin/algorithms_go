@@ -5,8 +5,8 @@ import (
 	"math"
 	"sort"
 
-	"ivanrybin/algorithms_go/data_structures/disjoint_set"
-	"ivanrybin/algorithms_go/helpers"
+	"github.com/ivanrybin/algorithms_go/data_structures/disjoint_set"
+	"github.com/ivanrybin/algorithms_go/helpers"
 )
 
 type edge struct {
