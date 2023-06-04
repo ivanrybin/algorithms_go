@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"ivanrybin/algorithms_go/helpers"
+	"github.com/ivanrybin/algorithms_go/helpers"
 )
 
 func TestBinaryHeap_NewBinaryHeap(t *testing.T) {

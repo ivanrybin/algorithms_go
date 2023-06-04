@@ -1,6 +1,6 @@
 package sorts
 
-import hs "ivanrybin/algorithms_go/helpers"
+import hs "github.com/ivanrybin/algorithms_go/helpers"
 
 // CountingSort O(n + m) / O(n + m) (mem / time) where m - max element in xs.
 //

@@ -1,6 +1,6 @@
 package queue_list
 
-import "ivanrybin/algorithms_go/data_structures"
+import "github.com/ivanrybin/algorithms_go/data_structures"
 
 type Queue[T any, S data_structures.Stack[T]] struct {
 	S1 S

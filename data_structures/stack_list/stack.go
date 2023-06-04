@@ -1,8 +1,8 @@
 package stack_list
 
 import (
-	"ivanrybin/algorithms_go/data_structures"
-	"ivanrybin/algorithms_go/data_structures/list"
+	"github.com/ivanrybin/algorithms_go/data_structures"
+	"github.com/ivanrybin/algorithms_go/data_structures/list"
 )
 
 type Stack[T any, L data_structures.List[T]] struct {
