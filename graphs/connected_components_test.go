@@ -2,8 +2,9 @@ package graphs
 
 import (
 	"fmt"
-	"github.com/ivanrybin/algorithms_go/helpers"
 	"testing"
+
+	"github.com/ivanrybin/algorithms_go/helpers"
 )
 
 func TestCC(t *testing.T) {
