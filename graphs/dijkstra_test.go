@@ -178,7 +178,7 @@ func TestDijkstra_Oriented_Weight_One(t *testing.T) {
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			if gotDist, _ := Dijkstra(tt.graph, tt.weights, tt.start); !reflect.DeepEqual(gotDist, tt.wantDist) {
-				t.Errorf("BFS() got = %v, want %v", gotDist, tt.wantDist)
+				t.Errorf("Dijkstra() got = %v, want %v", gotDist, tt.wantDist)
 			}
 		})
 	}

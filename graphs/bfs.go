@@ -2,6 +2,8 @@ package graphs
 
 import "container/list"
 
+// BFS O(V+E) / O(V) (time / mem).
+// * operations with maps dist and prev aren't counted.
 func BFS(graph Graph, start int) (map[int]int, map[int]int) {
 	dist := make(map[int]int, len(graph))
 	prev := make(map[int]int, len(graph))

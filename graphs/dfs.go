@@ -1,5 +1,7 @@
 package graphs
 
+// DFS O(V+E) / O(V) (time / mem).
+// * operations with map visited aren't counted.
 func DFS(g Graph, pre, post func(...any)) {
 	visited := make(map[int]struct{}, len(g))
 	for v := range g {
