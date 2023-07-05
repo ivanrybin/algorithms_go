@@ -58,7 +58,8 @@ func (l *SinglyLinkedList[T]) PopBack() T {
 		curr := l.head
 		for ; curr.next != l.tail; curr = curr.next {
 		}
-		curr.next = nil
+		l.tail = curr
+		l.tail.next = nil
 	}
 	l.size--
 	return tail.v
