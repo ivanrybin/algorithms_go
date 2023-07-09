@@ -7,6 +7,20 @@ func MinInt(a, b int) int {
 	return b
 }
 
+func MaxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func AbsInt(a int) int {
+	if a < 0 {
+		return -1 * a
+	}
+	return a
+}
+
 func MinInts(x int, xs ...int) int {
 	min := x
 	for _, n := range xs {
