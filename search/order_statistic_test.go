@@ -10,7 +10,7 @@ import (
 
 func TestOrderStatistic_Uniq_Ordered(t *testing.T) {
 	for size := 1; size < 50; size++ {
-		xs := hs.UniqSequentialInts(uint(size))
+		xs := hs.IncreasingInts(uint(size))
 		t.Run(fmt.Sprintf("%v", xs), func(t *testing.T) {
 			for k, want := range xs {
 				if got := OrderStatistic(append([]int{}, xs...), k+1); got != want {

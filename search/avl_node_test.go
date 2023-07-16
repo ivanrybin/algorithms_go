@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-func TestAVLNode_Predicats(t *testing.T) {
-	type predicats struct {
+func TestAVLNode_Predicates(t *testing.T) {
+	type predicates struct {
 		IsLeaf  bool
 		IsLeft  bool
 		IsRight bool
@@ -15,7 +15,7 @@ func TestAVLNode_Predicats(t *testing.T) {
 	for _, tt := range []struct {
 		name string
 		node *AVLNode[int]
-		want predicats
+		want predicates
 	}{
 		{
 			name: "full",
@@ -23,7 +23,7 @@ func TestAVLNode_Predicats(t *testing.T) {
 				l: &AVLNode[int]{},
 				r: &AVLNode[int]{},
 			},
-			want: predicats{
+			want: predicates{
 				IsLeaf:  false,
 				IsLeft:  true,
 				IsRight: true,
@@ -35,7 +35,7 @@ func TestAVLNode_Predicats(t *testing.T) {
 			node: &AVLNode[int]{
 				l: &AVLNode[int]{},
 			},
-			want: predicats{
+			want: predicates{
 				IsLeaf:  false,
 				IsLeft:  true,
 				IsRight: false,
@@ -47,7 +47,7 @@ func TestAVLNode_Predicats(t *testing.T) {
 			node: &AVLNode[int]{
 				r: &AVLNode[int]{},
 			},
-			want: predicats{
+			want: predicates{
 				IsLeaf:  false,
 				IsLeft:  false,
 				IsRight: true,
@@ -57,7 +57,7 @@ func TestAVLNode_Predicats(t *testing.T) {
 		{
 			name: "leaf",
 			node: &AVLNode[int]{},
-			want: predicats{
+			want: predicates{
 				IsLeaf:  true,
 				IsLeft:  false,
 				IsRight: false,
@@ -66,7 +66,7 @@ func TestAVLNode_Predicats(t *testing.T) {
 		},
 	} {
 		t.Run(tt.name, func(t *testing.T) {
-			got := predicats{
+			got := predicates{
 				IsLeaf:  tt.node.IsLeaf(),
 				IsLeft:  tt.node.IsLeft(),
 				IsRight: tt.node.IsRight(),
@@ -193,7 +193,7 @@ func TestAVLNode_Insert(t *testing.T) {
 	root := &AVLNode[int]{v: 42}
 	leq := func(l, r int) bool { return l <= r }
 	// right
-	n43 := root.Insert(43, leq)
+	n43 := root.Attach(43, leq)
 	if root.r != n43 {
 		t.Errorf("root.r != n43")
 	}
@@ -201,7 +201,7 @@ func TestAVLNode_Insert(t *testing.T) {
 		t.Errorf("n43.p != root")
 	}
 	// left
-	n41 := root.Insert(41, leq)
+	n41 := root.Attach(41, leq)
 	if root.l != n41 {
 		t.Errorf("root.r != n41")
 	}
@@ -220,7 +220,7 @@ func TestAVLNode_Insert_Panic_Left(t *testing.T) {
 		v: 42,
 		l: &AVLNode[int]{},
 	}
-	root.Insert(41, func(l, r int) bool { return l <= r })
+	root.Attach(41, func(l, r int) bool { return l <= r })
 }
 
 func TestAVLNode_Insert_Panic_Right(t *testing.T) {
@@ -233,7 +233,7 @@ func TestAVLNode_Insert_Panic_Right(t *testing.T) {
 		v: 42,
 		r: &AVLNode[int]{},
 	}
-	root.Insert(43, func(l, r int) bool { return l <= r })
+	root.Attach(43, func(l, r int) bool { return l <= r })
 }
 
 // TestAVLNode_Find
@@ -374,7 +374,7 @@ func TestAVLNode_DetectRotationType(t *testing.T) {
 	for _, tt := range []struct {
 		name string
 		node *AVLNode[int]
-		want RotationType
+		want AVLRotationType
 	}{
 		{
 			name: "no rotation 0 left and 0 right",
