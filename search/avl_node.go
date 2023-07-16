@@ -91,6 +91,44 @@ func (n *AVLNode[T]) Insert(v T, less func(l, r T) bool) *AVLNode[T] {
 	return node
 }
 
+func (n *AVLNode[T]) Min() *AVLNode[T] {
+	v := n
+	for v != nil && v.IsLeft() {
+		v = v.l
+	}
+	return v
+}
+
+func (n *AVLNode[T]) Max() *AVLNode[T] {
+	v := n
+	for v != nil && v.IsRight() {
+		v = v.r
+	}
+	return v
+}
+
+func (n *AVLNode[T]) Succ() *AVLNode[T] {
+	if n.IsRight() {
+		return n.r.Min()
+	}
+	v := n
+	for v.p != nil && v.p.l != v {
+		v = v.p
+	}
+	return v.p
+}
+
+func (n *AVLNode[T]) Pred() *AVLNode[T] {
+	if n.IsLeft() {
+		return n.l.Max()
+	}
+	v := n
+	for v.p != nil && v.p.r != v {
+		v = v.p
+	}
+	return v.p
+}
+
 type RotationType = int
 
 const (
