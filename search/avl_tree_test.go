@@ -256,7 +256,7 @@ func _absenceTest[T comparable](t *testing.T, avl *AVLTree[T], x T) {
 }
 
 func invariantTest[T comparable](t *testing.T, avl *AVLTree[T], size int) {
-	nodes := avl.root.InorderTraverse()
+	nodes := avl.InorderTraverse()
 	// size check
 	if len(nodes) != size {
 		t.Errorf("len(nodes)=%v != %v", len(nodes), size)

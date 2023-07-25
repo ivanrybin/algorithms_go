@@ -195,12 +195,22 @@ func (n *AVLNode[T]) Detach() {
 	}
 }
 
-// InorderTraverse collects nodes in non-decreasing.
+// InorderTraverse collects nodes in non-decreasing order.
 func (n *AVLNode[T]) InorderTraverse() []*AVLNode[T] {
 	if n == nil {
 		return []*AVLNode[T]{}
 	}
 	return append(append(n.Left().InorderTraverse(), n), n.Right().InorderTraverse()...)
+}
+
+// InorderTraverseKnownSize collects nodes to already allocated array in non-decreasing order.
+func (n *AVLNode[T]) InorderTraverseKnownSize(i *int, ns []*AVLNode[T]) {
+	if n == nil {
+		return
+	}
+	n.Left().InorderTraverseKnownSize(i, ns)
+	ns[*i], *i = n, *i+1
+	n.Right().InorderTraverseKnownSize(i, ns)
 }
 
 func (n *AVLNode[T]) String() string {
