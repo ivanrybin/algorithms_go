@@ -80,6 +80,13 @@ func (t *AVLTree[T]) Height() int {
 	return t.root.Height()
 }
 
+// InorderTraverse collects nodes of a tree in non-decreasing order.
+func (t *AVLTree[T]) InorderTraverse() []*AVLNode[T] {
+	i, ns := 0, make([]*AVLNode[T], t.size)
+	t.root.InorderTraverseKnownSize(&i, ns)
+	return ns
+}
+
 // fix a tree with rotations starting from specified node along the path to the root.
 func (t *AVLTree[T]) fix(n *AVLNode[T]) {
 	for ; n != nil && n.Parent() != nil; n = n.Parent() {
