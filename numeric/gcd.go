@@ -1,7 +1,7 @@
 package numeric
 
 // GCD finds GCD of two numbers.
-func GCD(a uint64, b uint64) uint64 {
+func GCD(a int64, b int64) int64 {
 	for b != 0 {
 		a, b = b, a%b
 	}

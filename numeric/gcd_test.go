@@ -7,8 +7,8 @@ import (
 
 func TestGCD(t *testing.T) {
 	for _, tt := range []struct {
-		a, b uint64
-		want uint64
+		a, b int64
+		want int64
 	}{
 		{
 			a: 10, b: 0, want: 10,
