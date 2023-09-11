@@ -1,51 +1,48 @@
 package helpers
 
-func LessInt(a, b int) bool {
-	return a < b
-}
-
-func MinInt(a, b int) int {
+func MinInt[T IntegerType](a, b T) T {
 	if a < b {
 		return a
 	}
 	return b
 }
 
-func MaxInt(a, b int) int {
+func MinInts[T IntegerType](x T, xs ...T) T {
+	m := x
+	for _, n := range xs {
+		if n < m {
+			m = n
+		}
+	}
+	return m
+}
+
+func MaxInt[T IntegerType](a, b T) T {
 	if a > b {
 		return a
 	}
 	return b
 }
 
-func AbsInt(a int) int {
+func MaxInts[T IntegerType](x T, xs ...T) T {
+	m := x
+	for _, n := range xs {
+		if n > m {
+			m = n
+		}
+	}
+	return m
+}
+
+func AbsInt[T Int](a T) T {
 	if a < 0 {
 		return -1 * a
 	}
 	return a
 }
 
-func MinInts(x int, xs ...int) int {
-	min := x
-	for _, n := range xs {
-		if n < min {
-			min = n
-		}
-	}
-	return min
-}
-
-func MinInArray(xs []int) int {
-	if len(xs) == 0 {
-		return -1
-	}
-	pos := 0
-	for i := 0; i < len(xs); i++ {
-		if xs[i] < xs[pos] {
-			pos = i
-		}
-	}
-	return pos
+func LessInt[T IntegerType](a, b T) bool {
+	return a < b
 }
 
 func GenSegments(l, r int) [][]int {

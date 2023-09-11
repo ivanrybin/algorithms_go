@@ -180,13 +180,13 @@ func avlDeleteFindRandomUniqTestIncremental(t *testing.T, iters, size int) {
 }
 
 func avlInsertFindTestOverall(t *testing.T, xs []int) {
-	avl := BuildAVLTree(xs, helpers.LessInt)
+	avl := BuildAVLTree(xs, helpers.LessInt[int])
 	presenceTestOverall(t, avl, xs)
 	invariantTest(t, avl, len(xs))
 }
 
 func avlInsertFindTestIncremental(t *testing.T, xs []int) {
-	avl := NewAVLTree(helpers.LessInt)
+	avl := NewAVLTree(helpers.LessInt[int])
 	for i, x := range xs {
 		n := avl.Insert(x)
 		if n.Value() != x {
@@ -198,7 +198,7 @@ func avlInsertFindTestIncremental(t *testing.T, xs []int) {
 }
 
 func avlDeleteFindTestOverall(t *testing.T, xs []int) {
-	avl := BuildAVLTree(xs, helpers.LessInt)
+	avl := BuildAVLTree(xs, helpers.LessInt[int])
 	for _, x := range xs {
 		if !avl.Delete(x) {
 			t.Errorf("avl.Delete(%v)=false", x)
@@ -209,7 +209,7 @@ func avlDeleteFindTestOverall(t *testing.T, xs []int) {
 }
 
 func avlDeleteFindTestRepeatedValuesIncremental(t *testing.T, xs []int) {
-	avl := BuildAVLTree(xs, helpers.LessInt)
+	avl := BuildAVLTree(xs, helpers.LessInt[int])
 	for i, x := range xs {
 		if !avl.Delete(x) {
 			t.Errorf("avl.Delete(%v)=false", x)
@@ -219,7 +219,7 @@ func avlDeleteFindTestRepeatedValuesIncremental(t *testing.T, xs []int) {
 }
 
 func avlDeleteFindTestUniqValuesIncremental(t *testing.T, xs []int) {
-	avl := BuildAVLTree(xs, helpers.LessInt)
+	avl := BuildAVLTree(xs, helpers.LessInt[int])
 	for i, x := range xs {
 		if !avl.Delete(x) {
 			t.Errorf("avl.Delete(%v)=false", x)

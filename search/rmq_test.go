@@ -48,7 +48,7 @@ func Test_NewRMQ_Min(t *testing.T) {
 		},
 	} {
 		t.Run(fmt.Sprintf("%v", tt.xs), func(t *testing.T) {
-			if got := NewRMQ(tt.xs, helpers.MinInt); !reflect.DeepEqual(got.vs, tt.want) {
+			if got := NewRMQ(tt.xs, helpers.MinInt[int]); !reflect.DeepEqual(got.vs, tt.want) {
 				t.Errorf("NewRMQ(%v)=%v != %v", tt.xs, got.vs, tt.want)
 			}
 		})
@@ -94,7 +94,7 @@ func Test_NewRMQ_Max(t *testing.T) {
 		},
 	} {
 		t.Run(fmt.Sprintf("%v", tt.xs), func(t *testing.T) {
-			if got := NewRMQ(tt.xs, helpers.MaxInt); !reflect.DeepEqual(got.vs, tt.want) {
+			if got := NewRMQ(tt.xs, helpers.MaxInt[int]); !reflect.DeepEqual(got.vs, tt.want) {
 				t.Errorf("NewRMQ(%v)=%v != %v", tt.xs, got.vs, tt.want)
 			}
 		})
@@ -107,7 +107,7 @@ func TestRMQ_Get_Random_MinInt(t *testing.T) {
 		for i := 0; i < repeats; i++ {
 			xs := helpers.RandomIntsExactSize(size, maxValue)
 			t.Run(fmt.Sprintf("%v", len(xs)), func(t *testing.T) {
-				rmq := NewRMQ(xs, helpers.MinInt)
+				rmq := NewRMQ(xs, helpers.MinInt[int])
 				segments := helpers.GenSegments(0, size-1)
 				checkSegments(t, rmq, xs, segments, helpers.FindIdempotentOnSegment[int])
 			})
@@ -121,7 +121,7 @@ func TestRMQ_Get_Random_MaxInt(t *testing.T) {
 		for i := 0; i < repeats; i++ {
 			xs := helpers.RandomIntsExactSize(size, maxValue)
 			t.Run(fmt.Sprintf("%v", len(xs)), func(t *testing.T) {
-				rmq := NewRMQ(xs, helpers.MaxInt)
+				rmq := NewRMQ(xs, helpers.MaxInt[int])
 				segments := helpers.GenSegments(0, size-1)
 				checkSegments(t, rmq, xs, segments, helpers.FindIdempotentOnSegment[int])
 			})
@@ -134,7 +134,7 @@ func TestRMQ_Get_Sequential_MinInt(t *testing.T) {
 	for size := 1; size <= len(sequence); size++ {
 		xs := sequence[0:size]
 		t.Run(fmt.Sprintf("%v", size), func(t *testing.T) {
-			rmq := NewRMQ(xs, helpers.MinInt)
+			rmq := NewRMQ(xs, helpers.MinInt[int])
 			segments := helpers.GenSegments(0, size-1)
 			checkSegments(t, rmq, xs, segments, helpers.FindMinOnSequentialSegment[int])
 		})
@@ -146,7 +146,7 @@ func TestRMQ_Get_Sequential_MaxInt(t *testing.T) {
 	for size := 1; size <= len(sequence); size++ {
 		xs := sequence[0:size]
 		t.Run(fmt.Sprintf("%v", size), func(t *testing.T) {
-			rmq := NewRMQ(xs, helpers.MaxInt)
+			rmq := NewRMQ(xs, helpers.MaxInt[int])
 			segments := helpers.GenSegments(0, size-1)
 			checkSegments(t, rmq, xs, segments, helpers.FindMaxOnSequentialSegment[int])
 		})
@@ -158,7 +158,7 @@ func TestRMQ_Update_Random_MinInt(t *testing.T) {
 	for size := 1; size <= maxSize; size++ {
 		xs, segments := helpers.RandomIntsExactSize(size, maxValue), helpers.GenSegments(0, size-1)
 		t.Run(fmt.Sprintf("%v", len(xs)), func(t *testing.T) {
-			rmq := NewRMQ(xs, helpers.MinInt)
+			rmq := NewRMQ(xs, helpers.MinInt[int])
 			for i := 0; i < repeats; i++ {
 				j, v := rand.Intn(rmq.n), rand.Intn(maxValue)
 				rmq.Update(j, v)
@@ -174,7 +174,7 @@ func TestRMQ_Update_Random_MaxInt(t *testing.T) {
 	for size := 1; size <= maxSize; size++ {
 		xs, segments := helpers.RandomIntsExactSize(size, maxValue), helpers.GenSegments(0, size-1)
 		t.Run(fmt.Sprintf("%v", len(xs)), func(t *testing.T) {
-			rmq := NewRMQ(xs, helpers.MaxInt)
+			rmq := NewRMQ(xs, helpers.MaxInt[int])
 			for i := 0; i < repeats; i++ {
 				j, v := rand.Intn(rmq.n), rand.Intn(maxValue)
 				rmq.Update(j, v)
