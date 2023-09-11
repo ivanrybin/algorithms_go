@@ -11,7 +11,7 @@ func TestCountingSort(t *testing.T) {
 	for _, tt := range hs.TestArraysIntNonNegative() {
 		tt := tt
 		t.Run(fmt.Sprintf("%v", tt), func(t *testing.T) {
-			hs.TestIntSort(t, tt, CountingSort)
+			hs.TestIntSort(t, tt, CountingSort[int])
 		})
 	}
 }
@@ -21,7 +21,7 @@ func TestCountingSort_Random(t *testing.T) {
 	for i := 0; i < 1000; i++ {
 		xs := hs.RandomInts(maxSize, maxValue)
 		t.Run(fmt.Sprintf("%v", xs), func(t *testing.T) {
-			hs.TestIntSort(t, xs, CountingSort)
+			hs.TestIntSort(t, xs, CountingSort[int])
 		})
 	}
 }
@@ -40,7 +40,7 @@ func TestCountingSortStable(t *testing.T) {
 	} {
 		tt := tt
 		t.Run(fmt.Sprintf("%v", tt), func(t *testing.T) {
-			hs.TestPairSortStable[string](t, tt, CountingSortStable[string])
+			hs.TestPairSortStable[string](t, tt, CountingSortStable[int, string])
 		})
 	}
 }
@@ -50,7 +50,7 @@ func TestCountingSortStable_Random(t *testing.T) {
 	for i := 0; i < 1000; i++ {
 		xs := hs.RandomPairsIntInt(maxSize, maxValue)
 		t.Run(fmt.Sprintf("%v", xs), func(t *testing.T) {
-			hs.TestPairSortStable[int](t, xs, CountingSortStable[int])
+			hs.TestPairSortStable[int](t, xs, CountingSortStable[int, int])
 		})
 	}
 }
