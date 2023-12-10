@@ -23,7 +23,6 @@ func SuffixArraySlowAngUgly(s string) []int {
 		for i := 0; i < n; i++ {
 			sa[i] = a[i].R
 		}
-
 		c[sa[0]] = 0
 		for i := 1; i < n; i++ {
 			if a[i].L == a[i-1].L {
@@ -49,7 +48,6 @@ func SuffixArraySlowAngUgly(s string) []int {
 		for i := 0; i < n; i++ {
 			sa[i] = a[i].R
 		}
-
 		c[sa[0]] = 0
 		for i := 1; i < n; i++ {
 			if a[i].L == a[i-1].L {
@@ -59,5 +57,5 @@ func SuffixArraySlowAngUgly(s string) []int {
 			}
 		}
 	}
-	return sa
+	return sa[1:]
 }
