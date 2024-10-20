@@ -2,26 +2,26 @@ package graphs
 
 // DFS O(V+E) / O(V) (time / mem).
 // * operations with map visited aren't counted.
-func DFS(g Graph, pre, post func(...any)) {
+func DFS(g Graph, pre, post func(v int, g Graph)) {
 	visited := make(map[int]struct{}, len(g))
 	for v := range g {
 		if _, ok := visited[v]; !ok {
-			exploreDFS(v, g, visited, pre, post)
+			dfs(v, g, visited, pre, post)
 		}
 	}
 }
 
-func exploreDFS(v int, g Graph, visited map[int]struct{}, pre, post func(...any)) {
+func dfs(v int, g Graph, visited map[int]struct{}, pre, post func(v int, g Graph)) {
 	visited[v] = struct{}{}
 	if pre != nil {
-		pre(v, g, visited)
+		pre(v, g)
 	}
 	for _, u := range g[v] {
 		if _, ok := visited[u]; !ok {
-			exploreDFS(u, g, visited, pre, post)
+			dfs(u, g, visited, pre, post)
 		}
 	}
 	if post != nil {
-		post(v, g, visited)
+		post(v, g)
 	}
 }

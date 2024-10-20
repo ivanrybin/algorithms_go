@@ -4,12 +4,13 @@ type Graph = map[int][]int
 
 type OrGraph = Graph
 
-func Reversed(g Graph) Graph {
-	reversed := make(Graph, len(g))
-	for v, list := range g {
-		for _, u := range list {
-			reversed[u] = append(reversed[u], v)
+// Transpose reverses all edges of oriented graph O(V+E).
+func Transpose(g Graph) Graph {
+	trans := make(Graph, len(g))
+	for v, neighbours := range g {
+		for _, u := range neighbours {
+			trans[u] = append(trans[u], v)
 		}
 	}
-	return reversed
+	return trans
 }
