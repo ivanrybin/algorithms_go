@@ -42,13 +42,13 @@ func binarySearchFirst(x int, xs []int, l, r int) int {
 
 // binarySearchLeftMost segment [l, r).
 func binarySearchLeftMost(x int, xs []int, l, r int) int {
+	id := -1
 	for l < r {
 		m := l + (r-l)/2
 		if xs[m] == x {
-			for leftMost := binarySearchLeftMost(x, xs, l, m); leftMost != -1; leftMost = binarySearchLeftMost(x, xs, l, m) {
-				m = leftMost
-			}
-			return m
+			r = m
+			id = m
+			continue
 		}
 		if xs[m] < x {
 			l = m + 1
@@ -56,18 +56,18 @@ func binarySearchLeftMost(x int, xs []int, l, r int) int {
 			r = m
 		}
 	}
-	return -1
+	return id
 }
 
 // binarySearchRightMost segment [l, r).
 func binarySearchRightMost(x int, xs []int, l, r int) int {
+	id := -1
 	for l < r {
 		m := l + (r-l)/2
 		if xs[m] == x {
-			for rightMost := binarySearchRightMost(x, xs, m+1, r); rightMost != -1; rightMost = binarySearchRightMost(x, xs, m+1, r) {
-				m = rightMost
-			}
-			return m
+			l = m + 1
+			id = m
+			continue
 		}
 		if xs[m] < x {
 			l = m + 1
@@ -75,5 +75,5 @@ func binarySearchRightMost(x int, xs []int, l, r int) int {
 			r = m
 		}
 	}
-	return -1
+	return id
 }
