@@ -2,7 +2,7 @@ package dynamic
 
 import "math"
 
-// ChainMatrixMultiplication find the lowest cost of matrices multiplication by finding the best order.
+// ChainMatrixMultiplication find the lowest cost of matrix multiplication by finding the best order.
 func ChainMatrixMultiplication(dimensions []int64) int64 {
 	if len(dimensions)%2 != 0 {
 		panic("invalid input")
