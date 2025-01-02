@@ -45,15 +45,11 @@ func binarySearchLeftMost(x int, xs []int, l, r int) int {
 	id := -1
 	for l < r {
 		m := l + (r-l)/2
-		if xs[m] == x {
+		if xs[m] >= x {
 			r = m
 			id = m
-			continue
-		}
-		if xs[m] < x {
-			l = m + 1
 		} else {
-			r = m
+			l = m + 1
 		}
 	}
 	return id
@@ -64,13 +60,9 @@ func binarySearchRightMost(x int, xs []int, l, r int) int {
 	id := -1
 	for l < r {
 		m := l + (r-l)/2
-		if xs[m] == x {
+		if xs[m] <= x {
 			l = m + 1
 			id = m
-			continue
-		}
-		if xs[m] < x {
-			l = m + 1
 		} else {
 			r = m
 		}

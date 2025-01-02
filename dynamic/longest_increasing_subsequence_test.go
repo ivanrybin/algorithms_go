@@ -91,6 +91,10 @@ func TestLongestIncreasingSubsequence(t *testing.T) {
 			in:   []int{0, 1, 2, 0, 1, 2, 0, 1, 2, 3},
 			want: []int{0, 1, 2, 9},
 		},
+		{
+			in:   []int{8, 3, 4, 6, 5, 2, 0, 7, 9, 1},
+			want: []int{1, 2, 3, 7, 8},
+		},
 	} {
 		tt := tt
 		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
@@ -186,6 +190,10 @@ func TestLongestIncreasingSubsequenceModified(t *testing.T) {
 			in:   []int{0, 1, 2, 0, 1, 2, 0, 1, 2, 3},
 			want: []int{0, 1, 2, 9},
 		},
+		{
+			in:   []int{8, 3, 4, 6, 5, 2, 0, 7, 9, 1},
+			want: []int{1, 2, 4, 7, 8},
+		},
 	} {
 		tt := tt
 		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
@@ -280,6 +288,10 @@ func TestLongestIncreasingSubsequenceModifiedFast(t *testing.T) {
 		{
 			in:   []int{0, 1, 2, 0, 1, 2, 0, 1, 2, 3},
 			want: []int{0, 1, 2, 9},
+		},
+		{
+			in:   []int{8, 3, 4, 6, 5, 2, 0, 7, 9, 1},
+			want: []int{1, 2, 4, 7, 8},
 		},
 	} {
 		tt := tt

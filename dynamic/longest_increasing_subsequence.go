@@ -4,6 +4,7 @@ package dynamic
 
 import (
 	"math"
+	"slices"
 	"sort"
 )
 
@@ -46,53 +47,55 @@ func LongestIncreasingSubsequence(xs []int) []int {
 // LongestIncreasingSubsequenceModified O(n) / O(n^2) (mem / time).
 func LongestIncreasingSubsequenceModified(xs []int) []int {
 	// d[l] - the smallest element at which an increasing subsequence of length l ends
-	prev, d := make([]int, len(xs)+1), make([]int, len(xs)+1)
-	prev[0], d[0] = -1, math.MinInt
+	pos, prev, d := make([]int, len(xs)+1), make([]int, len(xs)), make([]int, len(xs)+1)
+	pos[0], d[0] = -1, math.MinInt
 	for i := 1; i < len(d); i++ {
 		d[i] = math.MaxInt
-		prev[i] = -1
 	}
 	// subsequence calculation
+	length := 0
 	for i := 0; i < len(xs); i++ {
 		for l := 1; l <= len(xs); l++ {
 			if d[l-1] < xs[i] && xs[i] < d[l] {
 				d[l] = xs[i]
-				prev[l] = i
+				pos[l] = i
+				prev[i] = pos[l-1]
+				length = max(length, l)
 			}
 		}
 	}
 	// indices restoring
 	lis := make([]int, 0, len(xs))
-	for _, p := range prev {
-		if p != -1 {
-			lis = append(lis, p)
-		}
+	for p := pos[length]; p != -1; p = prev[p] {
+		lis = append(lis, p)
 	}
+	slices.Reverse(lis)
 	return lis
 }
 
 // LongestIncreasingSubsequenceModifiedFast O(n) / O(n * log n) (mem / time).
 func LongestIncreasingSubsequenceModifiedFast(xs []int) []int {
 	// d[l] - the smallest element at which an increasing subsequence of length l ends
-	prev, d := make([]int, len(xs)+1), make([]int, len(xs)+1)
-	prev[0], d[0] = -1, math.MinInt
+	pos, prev, d := make([]int, len(xs)+1), make([]int, len(xs)), make([]int, len(xs)+1)
+	pos[0], d[0] = -1, math.MinInt
 	for i := 1; i < len(d); i++ {
 		d[i] = math.MaxInt
-		prev[i] = -1
 	}
 	// subsequence calculation
+	length := 0
 	for i := 0; i < len(xs); i++ {
 		if l := sort.SearchInts(d, xs[i]); d[l-1] < xs[i] && xs[i] < d[l] {
 			d[l] = xs[i]
-			prev[l] = i
+			pos[l] = i
+			prev[i] = pos[l-1]
+			length = max(length, l)
 		}
 	}
 	// indices restoring
 	lis := make([]int, 0, len(xs))
-	for _, p := range prev {
-		if p != -1 {
-			lis = append(lis, p)
-		}
+	for p := pos[length]; p != -1; p = prev[p] {
+		lis = append(lis, p)
 	}
+	slices.Reverse(lis)
 	return lis
 }
