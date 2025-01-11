@@ -53,7 +53,7 @@ func MSTPrim(g Graph, weights map[edge]int) []edge {
 	return mst
 }
 
-// MSTKruskal O(E * log(V)).
+// MSTKruskal O(E * log(E)) (sort + O(E * α(E)).
 func MSTKruskal(g Graph, weights map[edge]int) []edge {
 	n := len(g)
 	if n == 0 {

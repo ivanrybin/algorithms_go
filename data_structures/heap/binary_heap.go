@@ -60,15 +60,19 @@ func (h *BinaryHeap[T]) build() {
 // siftDown O(log n).
 func (h *BinaryHeap[T]) siftDown(i int) {
 	next := i
-	if h.left(i) < h.Size() && h.comp(h.xs[h.left(i)], h.xs[i]) {
-		next = h.left(i)
-	}
-	if h.right(i) < h.Size() && h.comp(h.xs[h.right(i)], h.xs[next]) {
-		next = h.right(i)
-	}
-	if i < next {
-		h.swap(i, next)
-		h.siftDown(next)
+	for {
+		if h.left(i) < h.Size() && h.comp(h.xs[h.left(i)], h.xs[i]) {
+			next = h.left(i)
+		}
+		if h.right(i) < h.Size() && h.comp(h.xs[h.right(i)], h.xs[next]) {
+			next = h.right(i)
+		}
+		if i < next {
+			h.swap(i, next)
+			i = next
+		} else {
+			break
+		}
 	}
 }
 
