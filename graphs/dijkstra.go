@@ -3,7 +3,7 @@ package graphs
 import (
 	"container/heap"
 
-	"github.com/ivanrybin/algorithms_go/helpers"
+	hs "github.com/ivanrybin/algorithms_go/helpers"
 )
 
 // Dijkstra time depends on priority queue implementation and density of a graph.
@@ -24,25 +24,25 @@ func Dijkstra(graph Graph, weights map[[2]int]int, s int) (map[int]int, map[int]
 		v, d int
 	}
 	// map for access priority queue elements
-	known := make(map[int]*helpers.Elem[dst], len(graph))
-	queue := helpers.NewPriorityQueue[dst](func(l, r dst) bool { return l.d < r.d })
-	dist[s], prev[s], known[s] = 0, -1, &helpers.Elem[dst]{Value: dst{v: s, d: 0}}
+	known := make(map[int]*hs.Elem[dst], len(graph))
+	queue := hs.NewPriorityQueue[dst](func(l, r dst) bool { return l.d < r.d })
+	dist[s], prev[s], known[s] = 0, -1, &hs.Elem[dst]{Value: dst{v: s, d: 0}}
 	heap.Push(queue, known[s])
 	for queue.Len() > 0 {
-		e := heap.Pop(queue).(*helpers.Elem[dst])
+		e := heap.Pop(queue).(*hs.Elem[dst])
 		for _, u := range graph[e.Value.v] {
 			vu := [2]int{e.Value.v, u}
 			// vertex is visited for the first time
 			if du, ok := dist[u]; !ok {
 				dist[u] = dist[e.Value.v] + weights[vu]
 				prev[u] = e.Value.v
-				known[u] = &helpers.Elem[dst]{Value: dst{v: u, d: dist[u]}}
+				known[u] = &hs.Elem[dst]{Value: dst{v: u, d: dist[u]}}
 				heap.Push(queue, known[u])
 			} else if dvu := dist[e.Value.v] + weights[vu]; du > dvu {
 				dist[u] = dvu
 				prev[u] = e.Value.v
 				known[u].Value.d = dvu
-				heap.Fix(queue, known[u].Value.v)
+				heap.Fix(queue, known[u].Index())
 			}
 		}
 	}
